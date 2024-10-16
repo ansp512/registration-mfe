@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import EventsReg from "./registration-page";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";

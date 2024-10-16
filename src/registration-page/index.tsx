@@ -80,7 +80,8 @@ const EventsReg: React.FC<ComponentProps> = (props: ComponentProps) => {
           });
       })
       .catch((err) => {
-        setSnackbarMessage(err.response.data.detail);
+        const message = err.response?.data?.detail || "An error occurred";
+        setSnackbarMessage(message);
         setSnackbarOpen(true);
         setEventsLoading(false);
       });
@@ -111,7 +112,8 @@ const EventsReg: React.FC<ComponentProps> = (props: ComponentProps) => {
           });
       })
       .catch((err) => {
-        setSnackbarMessage(err.response.data.detail);
+        const message = err.response?.data?.detail || "An error occurred";
+        setSnackbarMessage(message);
         setSnackbarOpen(true);
         setEventsLoading(false);
       });
@@ -123,12 +125,22 @@ const EventsReg: React.FC<ComponentProps> = (props: ComponentProps) => {
     height: "25vh",
     justifyContent: "space-between",
     flexDirection: "column" as const,
+    marginTop: "8px",
   };
 
   return (
     <>
-      <Container maxWidth="xl" style={{ display: "flex" }}>
-        <Container style={{ display: "flex", flexDirection: "column", marginTop: "24px" }}>
+      <Container
+        maxWidth="xl"
+        style={{ display: "flex", maxHeight: "100%", overflow: "auto" }}
+      >
+        <Container
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            marginTop: "24px",
+          }}
+        >
           <Typography variant="h5" gutterBottom>
             Events
           </Typography>
@@ -191,7 +203,13 @@ const EventsReg: React.FC<ComponentProps> = (props: ComponentProps) => {
           </Grid2>
         </Container>
 
-        <Container style={{ display: "flex", flexDirection: "column", marginTop: "24px"}}>
+        <Container
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            marginTop: "24px",
+          }}
+        >
           <Typography variant="h5" gutterBottom>
             Registered Events
           </Typography>
@@ -258,6 +276,7 @@ const EventsReg: React.FC<ComponentProps> = (props: ComponentProps) => {
           autoHideDuration={2000}
           onClose={() => setSnackbarOpen(false)}
           message={snackBarMessage}
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         />
       </Container>
     </>
